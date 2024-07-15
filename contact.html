@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Nightclub</title>
+   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+   <style>
+      body,
+      html {
+         margin: 0;
+         padding: 0;
+         font-family: Arial, sans-serif;
+         height: 100%;
+         width: 100%;
+         overflow-x: hidden;
+         /* Prevent horizontal scrolling */
+      }
+
+      html {
+         width: -moz-available;
+         width: -webkit-fill-available;
+      }
+
+      body {
+         display: flex;
+         flex-direction: column;
+         min-height: 100vh;
+      }
+
+      .main-container {
+         flex: 1;
+         display: flex;
+         flex-direction: column;
+      }
+
+      section {
+         height: 100vh;
+         /* Full viewport height */
+         width: 100vw;
+         /* Full viewport width */
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         text-align: center;
+         position: relative;
+         background: url('20.jpg') no-repeat center center;
+         background-size: cover;
+         /* Ensure the image covers the entire header */
+      }
+
+      nav {
+         display: flex;
+         justify-content: center;
+         padding: 10px 0;
+         position: fixed;
+         width: 100%;
+         top: 0;
+         z-index: 1000;
+      }
+
+      nav ul {
+         list-style-type: none;
+         padding: 0;
+         margin: 0;
+         display: none;
+         flex-direction: column;
+         align-items: center;
+         width: 100%;
+         background-color: rgba(0, 0, 0, 0.9);
+         position: absolute;
+         top: 40px;
+         left: 0;
+      }
+
+      nav ul.show {
+         display: flex;
+      }
+
+      nav ul li {
+         margin: 10px 0;
+      }
+
+      nav ul li a {
+         color: white;
+         text-decoration: none;
+         font-weight: bold;
+      }
+
+      .menu-toggle {
+         display: block;
+         font-size: 24px;
+         cursor: pointer;
+         color: white;
+         position: absolute;
+         right: 20px;
+         top: 10px;
+      }
+
+      /* Mobile portrait view */
+      @media screen and (max-device-width: 480px) and (orientation: portrait) {
+         .menu-toggle {
+            font-size: 78px;
+            /* Increase the size for mobile portrait */
+            right: 20px;
+            /* Adjust the position if necessary */
+            top: 10px;
+            /* Adjust the position if necessary */
+         }
+      }
+
+      /* Appropriate size for smaller screens in landscape mode */
+      @media screen and (max-width: 768px) and (orientation: landscape) {
+         .menu-toggle {
+            font-size: 36px;
+            /* Increase size for mobile landscape */
+            right: 30px;
+            /* Adjust position if necessary */
+            top: 10px;
+            /* Adjust position if necessary */
+         }
+      }
+
+      /* Desktop site mode on mobile portrait */
+      @media screen and (min-width: 1025px) and (max-device-width: 480px) and (orientation: portrait) {
+         .menu-toggle {
+            font-size: 36px;
+            /* Adjust the size for desktop site mode on mobile */
+            right: 30px;
+            /* Adjust the position if necessary */
+            top: 10px;
+            /* Adjust the position if necessary */
+         }
+      }
+
+      /* Mobile view mode on mobile portrait */
+      @media screen and (max-width: 480px) and (orientation: portrait) {
+         .menu-toggle {
+            font-size: 36px;
+            /* Increase the size for mobile view mode */
+            right: 20px;
+            /* Adjust the position if necessary */
+            top: 10px;
+            /* Adjust the position if necessary */
+         }
+      }
+
+      /* Adjust the size of the menu toggle button for larger screens (desktop) */
+      @media screen and (min-width: 1025px) {
+         .menu-toggle {
+            font-size: 24px;
+            /* Standard size for desktop */
+            right: 20px;
+            /* Adjust the position if necessary */
+            top: 15px;
+            /* Adjust the position if necessary */
+         }
+      }
+
+      @media screen and (max-width: 1024px) {
+         section {
+            height: 30vh;
+         }
+
+         section img {
+            object-fit: fill;
+         }
+      }
+
+      @media screen and (max-width: 768px) {
+         section {
+            height: 30vh;
+         }
+
+         section img {
+            object-fit: fill;
+         }
+      }
+
+      @media screen and (max-width: 768px) and (orientation: portrait) {
+         .social-media {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            width: 100%;
+         }
+
+         footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 40px;
+            /* Adjust the padding as needed */
+         }
+
+         footer p {
+            margin-bottom: 35px;
+            /* Adjust the margin as needed */
+         }
+      }
+
+      .contact-section {
+         width: 100%;
+         display: flex;
+         justify-content: space-between;
+         align-items: flex-start;
+         padding: 20px;
+         position: relative;
+         background-image: url('republic14.jpg');
+         background-size: cover;
+         background-position: center;
+         box-sizing: border-box;
+         min-height: 50vh;
+         /* Default height */
+         flex: 1;
+         /* Allow this section to grow and fill available space */
+      }
+
+      /* Center content for desktop site mode on mobile devices in portrait orientation */
+      @media screen and (min-width: 1025px) and (max-device-width: 480px) and (orientation: portrait) {
+         .contact-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 70vh;
+            /* Adjust the height as needed */
+         }
+
+         .map-container {
+            margin: 0;
+         }
+      }
+
+      /* Adjust height for mobile view mode in portrait orientation */
+      @media screen and (max-width: 480px) and (orientation: portrait) {
+         .contact-section {
+            height: 100vh;
+            /* Adjusted height for mobile view */
+         }
+      }
+
+      .map-container {
+         width: 50%;
+         margin: 25px auto;
+         text-align: center;
+      }
+
+      .map-image {
+         max-width: 100%;
+         height: auto;
+         border-radius: 20px;
+         display: block;
+         margin: 0 auto 40px;
+      }
+
+      .address-text {
+         color: #f7f1f1;
+         text-align: center;
+         font-size: 16px;
+         font-weight: bold;
+      }
+
+      .address-text a {
+         color: #f8fafd;
+         text-decoration: underline;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         margin-bottom: 10px;
+      }
+
+      .address-text a.email-link {
+         color: rgb(233, 229, 30);
+      }
+
+      .address-text a.email-link:hover {
+         color: #ff3333;
+         text-decoration: none;
+      }
+
+      .address-text a:hover {
+         text-decoration: none;
+      }
+
+      .address-text a.phone-link {
+         color: rgb(233, 229, 30);
+      }
+
+      .address-text a.phone-link:hover {
+         color: #ff3333;
+      }
+
+      .address-text svg {
+         margin-right: 8px;
+         /* Space between the icon and the text */
+      }
+
+      footer {
+         background-color: black;
+         color: white;
+         text-align: center;
+         padding: 10px 0;
+         position: relative;
+         width: 100%;
+      }
+
+      .social-media {
+         position: absolute;
+         right: 10px;
+         bottom: 10px;
+      }
+
+      .social-media a {
+         color: white;
+         margin: 0 10px;
+         /* Maintain some space between links */
+         text-decoration: none;
+      }
+
+      .social-media img {
+         width: 25px;
+         height: 25px;
+         margin: 10 5px;
+         /* Maintain some space around images */
+      }
+
+      @media screen and (max-width: 1024px) {
+         section {
+            height: 30vh;
+         }
+
+         section img {
+            object-fit: fill;
+         }
+      }
+
+      @media screen and (max-width: 768px) {
+         section {
+            height: 30vh;
+         }
+
+         section img {
+            object-fit: fill;
+         }
+      }
+
+      @media screen and (orientation: landscape) and (max-width: 1024px) {
+         section {
+            height: 100vh;
+         }
+
+         section img {
+            object-fit: fill;
+         }
+      }
+
+      @media screen and (min-width: 769px) and (max-width: 1023px) {
+         footer {
+            padding: 10px 20px;
+            /* Adjust padding for tablet */
+            min-height: 40px;
+            /* Adjust minimum height for tablet */
+         }
+      }
+   </style>
+</head>
+
+<body>
+
+   <nav>
+      <span class="menu-toggle">&#9776;</span>
+      <ul>
+         <li><a href="index.html">Home</a></li>
+         <li><a href="about.html">About Us</a></li>
+         <li><a href="gallery.html">Gallery</a></li>
+         <li><a href="reservations.html">VIP Experience</a></li>
+         <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+   </nav>
+
+   <div class="main-container">
+      <section class="section">
+         <!-- Your main section content here -->
+      </section>
+
+      <div class="separator"></div>
+
+      <div class="contact-section">
+         <div class="map-container">
+            <a href="https://www.google.com/maps/place/Republic+Club+Pattaya/@12.92457,100.8671273,15z/data=!4m6!3m5!1s0x3102974ab6e53111:0x29ddfa259224d1bd!8m2!3d12.9255324!4d100.8723632!16s%2Fg%2F11fhvrfsm8?hl=en&entry=ttu"
+               target="_blank">
+               <img src="map.png" alt="Google Maps Location" class="map-image">
+               <p class="address-text">
+                  Address: 131/4 Soi JP Pattaya City, Bang Lamung District, Chon Buri 20150 <br>
+                  Hours: Opens 10 PM <br>
+                  <a href="tel:+66955578808" class="phone-link">
+                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                           d="M20 15.5C18.67 15.5 17.39 15.26 16.22 14.81C15.85 14.66 15.42 14.74 15.14 15.03L13.21 17C10.07 15.54 8.47 13.94 7 10.79L8.97 8.86C9.26 8.57 9.34 8.14 9.19 7.77C8.74 6.61 8.5 5.33 8.5 4C8.5 3.45 8.05 3 7.5 3H4C3.45 3 3 3.45 3 4C3 13.39 10.61 21 20 21C20.55 21 21 20.55 21 20V16.5C21 15.95 20.55 15.5 20 15.5Z"
+                           fill="white" />
+                     </svg>
+                     095 557 8808
+                  </a>
+                  <a href="mailto:republicpattaya@gmail.com" class="email-link">
+                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                           d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z"
+                           fill="white" />
+                     </svg>
+                     republicpattaya@gmail.com
+                  </a>
+               </p>
+            </a>
+         </div>
+      </div>
+   </div>
+
+   <footer>
+      <div class="social-media">
+         <a href="https://www.facebook.com/RepublicPattaya/" target="_blank">
+            <img src="facebook.png" alt="Facebook">
+         </a>
+         <a href="https://www.instagram.com/RepublicPattaya?fbclid=IwZXh0bgNhZW0CMTAAAR2akyaY4RGEEhKxUDg62-vddpxkQNV6miUHEEH9T5nIz0ZEqIp_4S6rpyE_aem_DZMEQygQKFx8QSzISKzn0Q"
+            target="_blank">
+            <img src="instagram.png" alt="Instagram">
+         </a>
+         <a href="https://www.tiktok.com/@RepublicPattaya" target="_blank">
+            <img src="tiktok.png" alt="TikTok">
+         </a>
+         <a href="https://x.com/RepublicPattaya?fbclid=IwZXh0bgNhZW0CMTAAAR3kIVmCpAhjo8YaGKv03CHlwGbPwGFTORNmjjwZReaccSZCPrAVB3Ik2Bs_aem_0Im4jfLNs1WO5CEN7Kls6Q"
+            target="_blank">
+            <img src="X.png" alt="X">
+         </a>
+      </div>
+      <p style="font-size: 12px;">&copy; 2022 Republic Club Pattaya. All rights reserved.</p>
+   </footer>
+
+   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+   <script>
+      document.querySelector('.menu-toggle').addEventListener('click', function () {
+         document.querySelector('nav ul').classList.toggle('show');
+      });
+
+      function closeModal() {
+         var modal = document.getElementById("myModal");
+         modal.style.display = "none";
+      }
+
+      window.onclick = function (event) {
+         var modal = document.getElementById("myModal");
+         if (event.target === modal) {
+            modal.style.display = "none";
+         }
+      };
+   </script>
+</body>
+
+</html>

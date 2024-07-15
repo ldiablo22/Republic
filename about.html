@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Nightclub</title>
+   <link rel="stylesheet" href="css/styles.css">
+   <style>
+      body,
+      html {
+         margin: 0;
+         padding: 0;
+         font-family: Arial, sans-serif;
+         height: 100%;
+      }
+
+      html {
+         width: -moz-available;
+         width: -webkit-fill-available;
+      }
+
+      nav {
+         display: flex;
+         justify-content: center;
+         padding: 10px 0;
+         position: fixed;
+         width: 100%;
+         top: 0;
+         z-index: 1000;
+      }
+
+      nav ul {
+         list-style-type: none;
+         padding: 0;
+         margin: 0;
+         display: none;
+         flex-direction: column;
+         align-items: center;
+         width: 100%;
+         background-color: rgba(0, 0, 0, 0.9);
+         position: absolute;
+         top: 40px;
+         left: 0;
+      }
+
+      nav ul.show {
+         display: flex;
+      }
+
+      nav ul li {
+         margin: 10px 0;
+      }
+
+      nav ul li a {
+         color: white;
+         text-decoration: none;
+         font-weight: bold;
+      }
+
+      .menu-toggle {
+         display: block;
+         font-size: 24px;
+         /* Default size */
+         cursor: pointer;
+         color: white;
+         position: absolute;
+         right: 20px;
+         top: 10px;
+      }
+
+
+      /* Adjust the size of the menu toggle button for larger screens in vertical view */
+      @media screen and (min-width: 1024px) and (orientation: portrait) {
+         .menu-toggle {
+            font-size: 48px;
+            /* Increase the size for larger screens */
+            right: 30px;
+            /* Adjust the position if necessary */
+            top: 15px;
+            /* Adjust the position if necessary */
+         }
+      }
+
+      /* Adjust the size of the menu toggle button for smaller screens in vertical view */
+      @media screen and (max-width: 1024px) and (orientation: portrait) {
+         .menu-toggle {
+            font-size: 36px;
+            /* Increase the size for mobile vertical */
+            right: 20px;
+            /* Adjust the position if necessary */
+            top: 10px;
+            /* Adjust the position if necessary */
+         }
+      }
+
+      /* Appropriate size for smaller screens in landscape mode */
+      @media screen and (max-width: 768px) and (orientation: landscape) {
+         .menu-toggle {
+            font-size: 36px;
+            /* Increase size for mobile landscape */
+            right: 20px;
+            /* Adjust position if necessary */
+            top: 10px;
+            /* Adjust position if necessary */
+         }
+      }
+
+
+      header {
+         position: relative;
+         height: 80vh;
+         overflow: hidden;
+      }
+
+      header video {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         object-fit: fill;
+      }
+
+      section {
+         padding: 40px 20px 20px;
+         color: white;
+      }
+
+      #home,
+      #about,
+      #gallery,
+      #reservations,
+      #contact {
+         background-color: #c41d1d;
+      }
+
+      #about h2,
+      #gallery h2,
+      #reservations h2,
+      #contact h2 {
+         margin-bottom: 20px;
+      }
+
+      #about p,
+      #gallery p,
+      #reservations p,
+      #contact p {
+         max-width: 800px;
+         margin: 0 auto 20px;
+         padding: 0 20px;
+         text-align: center;
+      }
+
+
+      footer {
+         background-color: black;
+         color: white;
+         padding: 10px 20px;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         position: relative;
+         min-height: 40px;
+      }
+
+      .footer-content {
+         width: 100%;
+         max-width: 1200px;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         position: relative;
+      }
+
+      .footer-content p {
+         margin: 0;
+         font-size: 14px;
+         text-align: center;
+         position: absolute;
+         left: 50%;
+         transform: translateX(-50%);
+      }
+
+      .social-media {
+         display: flex;
+         justify-content: flex-end;
+         align-items: center;
+         position: absolute;
+         right: 20px;
+      }
+
+      .social-media a {
+         color: white;
+         margin: 0 5px;
+         text-decoration: none;
+      }
+
+      .social-media img {
+         width: 25px;
+         height: 25px;
+      }
+
+      @media screen and (max-width: 768px) {
+         .footer-content {
+            flex-direction: column;
+         }
+
+         .footer-content p {
+            position: static;
+            transform: none;
+            margin-bottom: 5px;
+         }
+
+         .social-media {
+            position: static;
+            justify-content: center;
+            margin-top: 5px;
+         }
+      }
+
+
+
+      @media screen and (max-width: 768px) {
+         .social-media img {
+            width: 20px;
+            height: 20px;
+         }
+      }
+
+      @media screen and (max-width: 1024px) {
+         header {
+            height: 50vh;
+         }
+
+         header img {
+            object-fit: fill;
+         }
+      }
+
+      @media screen and (max-width: 768px) {
+         header {
+            height: 50vh;
+         }
+
+         header img {
+            object-fit: fill;
+         }
+      }
+
+      @media screen and (orientation: landscape) and (max-width: 1024px) {
+         header {
+            height: 100vh;
+         }
+
+         header img {
+            object-fit: fill;
+         }
+      }
+
+      @media screen and (min-width: 769px) and (max-width: 1023px) {
+         footer {
+            padding: 10px 20px;
+            /* Adjust padding for tablet */
+            min-height: 40px;
+            /* Adjust minimum height for tablet */
+         }
+      }
+   </style>
+</head>
+
+<body>
+   <header>
+      <video autoplay loop>
+         <source src="video.mp4" type="video/mp4">
+         Your browser does not support the video tag.
+      </video>
+   </header>
+   <nav>
+      <span class="menu-toggle">&#9776;</span>
+      <ul>
+         <li><a href="index.html">Home</a></li>
+         <li><a href="about.html">About Us</a></li>
+         <li><a href="gallery.html">Gallery</a></li>
+         <li><a href="reservations.html">VIP Experience</a></li>
+         <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+   </nav>
+   <section id="home"></section>
+   <section id="about">
+      <h2>About Republic Club Pattaya</h2>
+      <p>Welcome to Republic Club Pattaya, the premier nightlife destination where elegance meets excitement.
+         Located in the heart of Pattaya, our club is designed to provide an unforgettable experience for all who
+         walk through our doors.</p>
+      <p>At Republic Club, we pride ourselves on our top-notch service, sophisticated ambiance, and vibrant
+         atmosphere.
+         Our state-of-the-art sound system, dynamic lighting, and chic décor set the stage for an unparalleled
+         nightlife adventure. Whether you're looking to dance the night away to the latest beats from world-class DJs or
+         enjoy
+         a more intimate evening in one of our luxurious VIP sections, Republic Club has something for everyone.</p>
+      <p>Join us for an unforgettable night out. Whether you're celebrating a special occasion
+         or just looking to enjoy the best nightlife that Pattaya has to offer, we're here to make your experience
+         exceptional.
+         Come and see why Republic Club is the ultimate destination for nightlife enthusiasts in Pattaya.</p>
+   </section>
+   <section id="gallery">
+      <h2>Gallery</h2>
+      <p>Check out some photos from our recent events and see what makes our nightclub so special.</p>
+   </section>
+   <section id="reservations">
+      <h2>Reservations</h2>
+      <p>Book your table now and ensure you have the best seat in the house for your night out.</p>
+   </section>
+   <section id="contact">
+      <h2>Contact Us</h2>
+      <p>Get in touch with us for any inquiries or to learn more about our upcoming events.</p>
+   </section>
+   <footer>
+      <p style="font-size: 12px;">&copy; 2022 Republic Club Pattaya. All rights reserved.</p>
+      <div class="social-media">
+         <a href="https://www.facebook.com/RepublicPattaya/" target="_blank">
+            <img src="facebook.png" alt="Facebook">
+         </a>
+         <a href="https://www.instagram.com/RepublicPattaya?fbclid=IwZXh0bgNhZW0CMTAAAR2akyaY4RGEEhKxUDg62-vddpxkQNV6miUHEEH9T5nIz0ZEqIp_4S6rpyE_aem_DZMEQygQKFx8QSzISKzn0Q"
+            target="_blank">
+            <img src="instagram.png" alt="Instagram">
+         </a>
+         <a href="https://www.tiktok.com/@RepublicPattaya" target="_blank">
+            <img src="tiktok.png" alt="TikTok">
+         </a>
+         <a href="https://x.com/RepublicPattaya?fbclid=IwZXh0bgNhZW0CMTAAAR3kIVmCpAhjo8YaGKv03CHlwGbPwGFTORNmjjwZReaccSZCPrAVB3Ik2Bs_aem_0Im4jfLNs1WO5CEN7Kls6Q"
+            target="_blank">
+            <img src="X.png" alt="X">
+         </a>
+      </div>
+   </footer>
+   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+   <script>
+      var swiper = new Swiper('.swiper-container', {
+         navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+         },
+      });
+
+      document.querySelector('.menu-toggle').addEventListener('click', function () {
+         document.querySelector('nav ul').classList.toggle('show');
+      });
+   </script>
+</body>
+
+</html>

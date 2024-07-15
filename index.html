@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Nightclub</title>
+   <link rel="stylesheet" href="css/styles.css">
+   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+   <style>
+      body,
+      html {
+         margin: 0;
+         padding: 0;
+         font-family: Arial, sans-serif;
+         height: 100%;
+      }
+
+      html {
+         width: -moz-available;
+         width: -webkit-fill-available;
+      }
+
+      nav {
+         display: flex;
+         justify-content: center;
+         padding: 10px 0;
+         position: fixed;
+         width: 100%;
+         top: 0;
+         z-index: 1000;
+      }
+
+      nav ul {
+         list-style-type: none;
+         padding: 0;
+         margin: 0;
+         display: none;
+         flex-direction: column;
+         align-items: center;
+         width: 100%;
+         background-color: rgba(0, 0, 0, 0.9);
+         position: absolute;
+         top: 40px;
+         left: 0;
+      }
+
+      nav ul.show {
+         display: flex;
+      }
+
+      nav ul li {
+         margin: 10px 0;
+      }
+
+      nav ul li a {
+         color: white;
+         text-decoration: none;
+         font-weight: bold;
+      }
+
+      .menu-toggle {
+         display: block;
+         font-size: 24px;
+         cursor: pointer;
+         color: white;
+         position: absolute;
+         right: 20px;
+         top: 10px;
+      }
+
+      @media screen and (min-width: 1024px) and (orientation: portrait) {
+         .menu-toggle {
+            font-size: 48px;
+            right: 30px;
+            top: 15px;
+         }
+      }
+
+      @media screen and (max-width: 1024px) and (orientation: portrait) {
+         .menu-toggle {
+            font-size: 36px;
+            right: 20px;
+            top: 10px;
+         }
+      }
+
+      @media screen and (max-width: 768px) and (orientation: landscape) {
+         .menu-toggle {
+            font-size: 36px;
+            right: 20px;
+            top: 10px;
+         }
+      }
+
+      header {
+         height: 100vh;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         text-align: center;
+         position: relative;
+         width: 100%;
+         background: url('home.png') no-repeat center center/cover;
+      }
+
+      header img {
+         max-width: 100%;
+         height: auto;
+      }
+
+      section {
+         padding: 80px 20px 20px;
+         color: white;
+      }
+
+      #about {
+         background-color: #c41d1d;
+         text-align: center;
+         position: relative;
+         padding: 20px;
+         height: 400px;
+      }
+
+      .swiper-container {
+         width: 100%;
+         height: 100%;
+         position: relative;
+         overflow: hidden;
+      }
+
+      .swiper-slide {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         background: #c41d1d;
+         overflow: hidden;
+      }
+
+      .swiper-slide img {
+         width: auto;
+         height: auto;
+         max-width: 48%;
+         max-height: 100%;
+         object-fit: contain;
+         margin: 0 1%;
+      }
+
+      /* Adjust image sizes for mobile portrait mode */
+      @media screen and (max-width: 768px) {
+         .swiper-slide {
+            flex-direction: column;
+         }
+
+         .swiper-slide img {
+            max-width: 80%;
+            margin: 10px 0;
+         }
+      }
+
+      .swiper-button-next,
+      .swiper-button-prev {
+         position: absolute;
+         top: 50%;
+         transform: translateY(-50%);
+         color: white;
+         background-color: rgba(0, 0, 0, 0.5);
+         width: 50px;
+         height: 50px;
+         border-radius: 50%;
+         z-index: 10;
+      }
+
+      .swiper-button-next {
+         right: 5px;
+      }
+
+      .swiper-button-prev {
+         left: 5px;
+      }
+
+      #events {
+         background-color: #c41d1d;
+      }
+
+      #upcoming-events {
+         background-color: #c41d1d;
+         text-align: center;
+         padding: 20px;
+         color: white;
+      }
+
+      .event-images {
+         display: grid;
+         grid-template-columns: repeat(4, 1fr);
+         gap: 10px;
+         padding: 10px 0;
+      }
+
+      .event-images img {
+         width: 100%;
+         height: auto;
+         object-fit: contain;
+         max-height: 200px;
+      }
+
+      @media screen and (max-width: 1024px) {
+         .event-images {
+            grid-template-columns: repeat(2, 1fr);
+         }
+
+         .event-images img {
+            max-height: 300px;
+         }
+      }
+
+      @media screen and (max-width: 768px) {
+         .event-images {
+            grid-template-columns: repeat(1, 1fr);
+         }
+
+         .event-images img {
+            max-height: 300px;
+         }
+      }
+
+      #vip {
+         background-color: #c41d1d;
+      }
+
+      #join {
+         background-color: #c41d1d;
+         position: relative;
+         text-align: center;
+         padding: 20px;
+      }
+
+      #join img {
+         max-width: 500px;
+         width: 100%;
+         height: auto;
+         margin: 20px auto 0;
+         display: block;
+      }
+
+      footer {
+         background-color: black;
+         color: white;
+         padding: 10px 20px;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         position: relative;
+         min-height: 40px;
+      }
+
+      .footer-content {
+         width: 100%;
+         max-width: 1200px;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         position: relative;
+      }
+
+      .footer-content p {
+         margin: 0;
+         font-size: 14px;
+         text-align: center;
+         position: absolute;
+         left: 50%;
+         transform: translateX(-50%);
+      }
+
+      .social-media {
+         display: flex;
+         justify-content: flex-end;
+         align-items: center;
+         position: absolute;
+         right: 20px;
+      }
+
+      .social-media a {
+         color: white;
+         margin: 0 5px;
+         text-decoration: none;
+      }
+
+      .social-media img {
+         width: 25px;
+         height: 25px;
+      }
+
+      @media screen and (max-width: 768px) {
+         .footer-content {
+            flex-direction: column;
+         }
+
+         .footer-content p {
+            position: static;
+            transform: none;
+            margin-bottom: 5px;
+         }
+
+         .social-media {
+            position: static;
+            justify-content: center;
+            margin-top: 5px;
+         }
+      }
+
+      .content p {
+         font-size: 14px;
+         /* Change this value to your desired font size */
+      }
+
+      /* Specific p elements */
+      .content p:nth-of-type(1) {
+         font-size: 14px;
+         /* Change font size for the first p element */
+      }
+
+      .content p:nth-of-type(2) {
+         font-size: 14px;
+         /* Change font size for the second p element */
+      }
+
+      .content p:nth-of-type(3) {
+         font-size: 14px;
+         /* Change font size for the third p element */
+      }
+
+      .content p:nth-of-type(4) {
+         font-size: 14px;
+         /* Change font size for the fourth p element */
+      }
+
+
+      @media screen and (max-width: 768px) {
+         .social-media img {
+            width: 20px;
+            height: 20px;
+         }
+      }
+
+      @media screen and (max-width: 1024px) {
+         header {
+            height: 50vh;
+         }
+
+         header img {
+            object-fit: fill;
+         }
+      }
+
+      @media screen and (max-width: 768px) {
+         header {
+            height: 50vh;
+         }
+
+         header img {
+            object-fit: fill;
+         }
+      }
+
+      @media screen and (orientation: landscape) and (max-width: 1024px) {
+         header {
+            height: 100vh;
+         }
+
+         header img {
+            object-fit: fill;
+         }
+      }
+
+      @media screen and (min-width: 769px) and (max-width: 1023px) {
+         footer {
+            padding: 10px 20px;
+            min-height: 40px;
+         }
+      }
+
+      a svg {
+         fill: white;
+         transition: fill 0.3s ease;
+      }
+
+      a:hover svg {
+         fill: #ff3333;
+      }
+   </style>
+</head>
+
+<body>
+   <nav>
+      <span class="menu-toggle">&#9776;</span>
+      <ul>
+         <li><a href="index.html">Home</a></li>
+         <li><a href="about.html">About Us</a></li>
+         <li><a href="gallery.html">Gallery</a></li>
+         <li><a href="reservations.html">VIP Experience</a></li>
+         <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+   </nav>
+   <header id="home">
+      <!-- Header content here -->
+   </header>
+   <section id="about">
+      <div class="swiper-container">
+         <div class="swiper-wrapper">
+            <div class="swiper-slide">
+               <img src="republic3.jpg" alt="Image 3">
+               <img src="republic4.jpg" alt="Image 4">
+            </div>
+            <div class="swiper-slide">
+               <img src="republic5.jpg" alt="Image 5">
+               <img src="republic6.jpg" alt="Image 6">
+            </div>
+            <div class="swiper-slide">
+               <img src="republic7.jpg" alt="Image 7">
+               <img src="republic8.jpg" alt="Image 8">
+            </div>
+            <div class="swiper-slide">
+               <img src="republic9.jpg" alt="Image 9">
+               <img src="republic10.jpg" alt="Image 10">
+            </div>
+            <div class="swiper-slide">
+               <img src="republic17.jpg" alt="Image 11">
+               <img src="republic18.jpg" alt="Image 12">
+            </div>
+            <div class="swiper-slide">
+               <img src="republic19.jpg" alt="Image 13">
+               <img src="republic20.jpg" alt="Image 14">
+            </div>
+         </div>
+         <!-- Add Navigation -->
+         <div class="swiper-button-next"></div>
+         <div class="swiper-button-prev"></div>
+      </div>
+   </section>
+   <section id="events">
+      <h2>Upcoming Events</h2>
+      <p>Discover our upcoming events and parties.</p>
+      <p> Don't miss out on the hottest nights in town!</p>
+   </section>
+   <section id="upcoming-events">
+      <h2></h2>
+      <div class="event-images">
+         <img src="event1.jpg" alt="Event 1">
+         <img src="event2.jpg" alt="Event 2" style="height: 300px;">
+         <img src="event3.jpg" alt="Event 3">
+         <img src="event4.jpg" alt="Event 4" style="height: 250px;">
+      </div>
+   </section>
+   <section id="vip">
+      <h2>VIP Experience</h2>
+      <p>Experience nightlife like never before with our VIP packages. Enjoy exclusive benefits and services.</p>
+   </section>
+   <section id="join">
+      <div class="content">
+         <h2>Contact Us</h2>
+         <p>FOR SERIOUS ENQUIRIES CONTACT:</p>
+         <p>MR. NICK DOBRZYNSKI</p>
+         <p>(MANAGING DIRECTOR)</p>
+         <p>0849 168 161</p>
+         <a href="tel:0849168161">
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+               <path
+                  d="M20 15.5C18.67 15.5 17.39 15.26 16.22 14.81C15.85 14.66 15.42 14.74 15.14 15.03L13.21 17C10.07 15.54 8.47 13.94 7 10.79L8.97 8.86C9.26 8.57 9.34 8.14 9.19 7.77C8.74 6.61 8.5 5.33 8.5 4C8.5 3.45 8.05 3 7.5 3H4C3.45 3 3 3.45 3 4C3 13.39 10.61 21 20 21C20.55 21 21 20.55 21 20V16.5C21 15.95 20.55 15.5 20 15.5Z"
+                  fill="white" />
+            </svg>
+         </a>
+      </div>
+      <img src="republic.jpg" alt="Contact Image">
+   </section>
+   <footer>
+      <div class="footer-content">
+         <p>&copy; 2022 Republic Club Pattaya. All rights reserved.</p>
+         <div class="social-media">
+            <a href="https://www.facebook.com/RepublicPattaya/" target="_blank">
+               <img src="facebook.png" alt="Facebook">
+            </a>
+            <a href="https://www.instagram.com/RepublicPattaya?fbclid=IwZXh0bgNhZW0CMTAAAR2akyaY4RGEEhKxUDg62-vddpxkQNV6miUHEEH9T5nIz0ZEqIp_4S6rpyE_aem_DZMEQygQKFx8QSzISKzn0Q"
+               target="_blank">
+               <img src="instagram.png" alt="Instagram">
+            </a>
+            <a href="https://www.tiktok.com/@RepublicPattaya" target="_blank">
+               <img src="tiktok.png" alt="TikTok">
+            </a>
+            <a href="https://x.com/RepublicPattaya?fbclid=IwZXh0bgNhZW0CMTAAAR3kIVmCpAhjo8YaGKv03CHlwGbPwGFTORNmjjwZReaccSZCPrAVB3Ik2Bs_aem_0Im4jfLNs1WO5CEN7Kls6Q"
+               target="_blank">
+               <img src="X.png" alt="X">
+            </a>
+         </div>
+      </div>
+   </footer>
+
+   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+   <script>
+      var swiper = new Swiper('.swiper-container', {
+         navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+         },
+      });
+
+      document.querySelector('.menu-toggle').addEventListener('click', function () {
+         document.querySelector('nav ul').classList.toggle('show');
+      });
+   </script>
+</body>
+
+</html>

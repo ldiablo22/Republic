@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Nightclub</title>
+   <link rel="stylesheet" href="css/styles.css">
+   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+   <style>
+      body,
+      html {
+         margin: 0;
+         padding: 0;
+         font-family: Arial, sans-serif;
+         height: 100%;
+         width: 100%;
+         overflow-x: hidden;
+         /* Prevent horizontal scrolling */
+      }
+
+      html {
+         width: -moz-available;
+         width: -webkit-fill-available;
+      }
+
+      header {
+         height: 100vh;
+         /* Full viewport height */
+         width: 100vw;
+         /* Full viewport width */
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         text-align: center;
+         position: relative;
+         background: url('republic16.jpg') no-repeat center center;
+         background-size: cover;
+         /* Ensure the image covers the entire header */
+      }
+
+      nav {
+         display: flex;
+         justify-content: center;
+         padding: 10px 0;
+         position: fixed;
+         width: 100%;
+         top: 0;
+         z-index: 1000;
+      }
+
+      nav ul {
+         list-style-type: none;
+         padding: 0;
+         margin: 0;
+         display: none;
+         flex-direction: column;
+         align-items: center;
+         width: 100%;
+         background-color: rgba(0, 0, 0, 0.9);
+         position: absolute;
+         top: 40px;
+         left: 0;
+      }
+
+      nav ul.show {
+         display: flex;
+      }
+
+      nav ul li {
+         margin: 10px 0;
+      }
+
+      nav ul li a {
+         color: white;
+         text-decoration: none;
+         font-weight: bold;
+      }
+
+      .menu-toggle {
+         display: block;
+         font-size: 24px;
+         cursor: pointer;
+         color: white;
+         position: absolute;
+         right: 20px;
+         top: 10px;
+      }
+
+      /* Adjust the size of the menu toggle button for larger screens in vertical view */
+      @media screen and (min-width: 1024px) and (orientation: portrait) {
+         .menu-toggle {
+            font-size: 48px;
+            /* Increase the size for larger screens */
+            right: 30px;
+            /* Adjust the position if necessary */
+            top: 15px;
+            /* Adjust the position if necessary */
+         }
+      }
+
+      /* Adjust the size of the menu toggle button for smaller screens in vertical view */
+      @media screen and (max-width: 1024px) and (orientation: portrait) {
+         .menu-toggle {
+            font-size: 36px;
+            /* Increase the size for mobile vertical */
+            right: 20px;
+            /* Adjust the position if necessary */
+            top: 10px;
+            /* Adjust the position if necessary */
+         }
+      }
+
+      /* Appropriate size for smaller screens in landscape mode */
+      @media screen and (max-width: 768px) and (orientation: landscape) {
+         .menu-toggle {
+            font-size: 36px;
+            /* Increase size for mobile landscape */
+            right: 20px;
+            /* Adjust position if necessary */
+            top: 10px;
+            /* Adjust position if necessary */
+         }
+      }
+
+      section {
+         padding: 80px 20px 20px;
+         color: white;
+      }
+
+      #vip {
+         background-color: #c41d1d;
+         color: white;
+      }
+
+      #vip p {
+         max-width: 600px;
+         margin: 20px auto;
+         line-height: 1.5;
+      }
+
+      #gallery {
+         background-color: var(--gallery-bg-color, #c41d1d);
+         color: white;
+         position: relative;
+         padding-bottom: 50px;
+      }
+
+      .media-gallery {
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: center;
+         margin-top: 20px;
+      }
+
+      .media-item {
+         margin: 10px;
+         width: 300px;
+         max-width: 100%;
+         text-align: center;
+      }
+
+      .media-item img,
+      .media-item video {
+         max-width: 100%;
+         border-radius: 8px;
+      }
+
+      footer {
+         background-color: black;
+         color: white;
+         padding: 10px 20px;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         position: relative;
+         min-height: 40px;
+      }
+
+      .footer-content {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         width: 100%;
+         max-width: 1200px;
+      }
+
+      footer p {
+         margin: 0;
+         text-align: center;
+         font-size: 14px;
+         flex: 1;
+      }
+
+      .social-media {
+         display: flex;
+         justify-content: flex-end;
+         align-items: center;
+      }
+
+      .social-media a {
+         color: white;
+         margin: 0 5px;
+         text-decoration: none;
+      }
+
+      .social-media img {
+         width: 25px;
+         height: 25px;
+      }
+
+
+
+      @media screen and (max-width: 1024px) {
+         header {
+            height: 30vh;
+         }
+
+         header img {
+            object-fit: fill;
+         }
+      }
+
+
+      @media screen and (max-width: 768px) {
+         header {
+            height: 30vh;
+         }
+
+         header img {
+            object-fit: fill;
+         }
+      }
+
+      @media screen and (orientation: landscape) and (max-width: 1024px) {
+         header {
+            height: 100vh;
+         }
+
+         header img {
+            object-fit: fill;
+         }
+      }
+
+
+      @media screen and (min-width: 769px) and (max-width: 1023px) {
+         footer {
+            padding: 10px 20px;
+            /* Adjust padding for tablet */
+            min-height: 40px;
+            /* Adjust minimum height for tablet */
+         }
+      }
+   </style>
+</head>
+
+<body>
+   <nav>
+      <span class="menu-toggle">&#9776;</span>
+      <ul>
+         <li><a href="index.html">Home</a></li>
+         <li><a href="about.html">About Us</a></li>
+         <li><a href="gallery.html">Gallery</a></li>
+         <li><a href="reservations.html">VIP Experience</a></li>
+         <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+   </nav>
+
+   <header>
+   </header>
+
+   <section id="vip">
+      <h2>VIP Experience</h2>
+      <p>Elevate your nightlife experience at Republic Club Pattaya with our exclusive VIP sections.
+         Designed for those who seek luxury and a level of privacy, our VIP areas offer a retreat within the vibrant
+         energy of our club.</p>
+      <p>Each VIP section at Republic Club is meticulously crafted to provide comfort and style.
+         Whether you're celebrating a special occasion or simply enjoying a night out with friends,
+         our VIP experience promises personalized service and attention to detail.</p>
+      <p>Indulge in bottle service featuring a premium selection of spirits, champagne, and wines,
+         curated to satisfy the most discerning tastes. Our dedicated VIP hosts ensure that your every need is met,
+         allowing you to relax and immerse yourself in the excitement of the night.</p>
+      <p>Experience the epitome of luxury nightlife at Republic Club Pattaya's VIP sections.
+         Discover why our VIP experience is unrivaled in Pattaya, where every moment is designed to exceed your
+         expectations.</p>
+   </section>
+
+   <section id="gallery">
+      <h2></h2>
+      <div class="media-gallery">
+         <div class="media-item">
+            <img src="10.jpg" alt="Image 10">
+         </div>
+         <div class="media-item">
+            <img src="38.jpg" alt="Image 11">
+         </div>
+         <div class="media-item">
+            <img src="23.jpg" alt="Image 12">
+         </div>
+         <div class="media-item">
+            <img src="26.jpg" alt="Image 6">
+         </div>
+         <div class="media-item">
+            <img src="29.jpg" alt="Image 7">
+         </div>
+         <div class="media-item">
+            <img src="27.jpg" alt="Image 8">
+         </div>
+         <div class="media-item">
+            <img src="30.jpg" alt="Image 9">
+         </div>
+         <div class="media-item">
+            <img src="34.jpg" alt="Image 10">
+         </div>
+         <div class="media-item">
+            <img src="35.jpg" alt="Image 11">
+         </div>
+         <div class="media-item">
+            <img src="36.jpg" alt="Image 12">
+         </div>
+         <div class="media-item">
+            <img src="37.jpg" alt="Image 13">
+         </div>
+         <div class="media-item">
+            <img src="39.jpg" alt="Image 14">
+         </div>
+         <div class="media-item">
+            <img src="50.jpg" alt="Image 15">
+         </div>
+         <div class="media-item">
+            <img src="51.jpg" alt="Image 16">
+         </div>
+         <div class="media-item">
+            <img src="52.jpg" alt="Image 17">
+         </div>
+         <div class="media-item">
+            <img src="53.jpg" alt="Image 17">
+         </div>
+   </section>
+
+   <footer>
+      <p style="font-size: 12px;">&copy; 2022 Republic Club Pattaya. All rights reserved.</p>
+      <div class="social-media">
+         <a href="https://www.facebook.com/RepublicPattaya/" target="_blank">
+            <img src="facebook.png" alt="Facebook">
+         </a>
+         <a href="https://www.instagram.com/RepublicPattaya?fbclid=IwZXh0bgNhZW0CMTAAAR2akyaY4RGEEhKxUDg62-vddpxkQNV6miUHEEH9T5nIz0ZEqIp_4S6rpyE_aem_DZMEQygQKFx8QSzISKzn0Q"
+            target="_blank">
+            <img src="instagram.png" alt="Instagram">
+         </a>
+         <a href="https://www.tiktok.com/@RepublicPattaya" target="_blank">
+            <img src="tiktok.png" alt="TikTok">
+         </a>
+         <a href="https://x.com/RepublicPattaya?fbclid=IwZXh0bgNhZW0CMTAAAR3kIVmCpAhjo8YaGKv03CHlwGbPwGFTORNmjjwZReaccSZCPrAVB3Ik2Bs_aem_0Im4jfLNs1WO5CEN7Kls6Q"
+            target="_blank">
+            <img src="X.png" alt="X">
+         </a>
+      </div>
+   </footer>
+   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+   <script>
+      var swiper = new Swiper('.swiper-container', {
+         navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+         },
+      });
+
+      document.querySelector('.menu-toggle').addEventListener('click', function () {
+         document.querySelector('nav ul').classList.toggle('show');
+      });
+   </script>
+</body>
+
+</html>
