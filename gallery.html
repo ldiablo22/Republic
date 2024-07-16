@@ -16,14 +16,13 @@
          background-color: #f2f2f2;
          height: 100%;
          width: 100%;
+         overflow-x: hidden;
       }
 
       html {
          width: -moz-available;
          width: -webkit-fill-available;
       }
-
-
 
       nav {
          display: flex;
@@ -69,46 +68,33 @@
          cursor: pointer;
          color: white;
          position: absolute;
-         right: 20px;
+         right: 40px;
          top: 10px;
       }
 
-      /* Adjust the size of the menu toggle button for larger screens in vertical view */
       @media screen and (min-width: 1024px) and (orientation: portrait) {
          .menu-toggle {
             font-size: 48px;
-            /* Increase the size for larger screens */
             right: 30px;
-            /* Adjust the position if necessary */
             top: 15px;
-            /* Adjust the position if necessary */
          }
       }
 
-      /* Adjust the size of the menu toggle button for smaller screens in vertical view */
       @media screen and (max-width: 1024px) and (orientation: portrait) {
          .menu-toggle {
             font-size: 36px;
-            /* Increase the size for mobile vertical */
             right: 20px;
-            /* Adjust the position if necessary */
             top: 10px;
-            /* Adjust the position if necessary */
          }
       }
 
-      /* Appropriate size for smaller screens in landscape mode */
       @media screen and (max-width: 768px) and (orientation: landscape) {
          .menu-toggle {
             font-size: 36px;
-            /* Increase size for mobile landscape */
             right: 20px;
-            /* Adjust position if necessary */
             top: 10px;
-            /* Adjust position if necessary */
          }
       }
-
 
       @media screen and (max-width: 768px) {
          nav ul li {
@@ -180,12 +166,10 @@
             flex-direction: column;
             align-items: center;
             padding-bottom: 40px;
-            /* Adjust the padding as needed */
          }
 
          footer p {
             margin-bottom: 35px;
-            /* Adjust the margin as needed */
          }
       }
 
@@ -199,7 +183,7 @@
          background-size: cover;
          background-position: center;
          min-height: calc(60vh - 60px);
-         margin-bottom: -60px;
+         width: 100%;
       }
 
       .album {
@@ -207,7 +191,10 @@
          margin-bottom: 20px;
          text-align: center;
          cursor: pointer;
+         margin-left: -40px;
+         /* Add this line to move the albums to the left */
       }
+
 
       .album img {
          width: 100%;
@@ -281,27 +268,30 @@
          align-items: center;
          position: relative;
          min-height: 40px;
+         text-align: center;
+         width: 100%;
       }
 
       .footer-content {
-         display: flex;
-         justify-content: space-between;
-         align-items: center;
-         width: 140%;
+         width: 100%;
          max-width: 1200px;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         position: relative;
       }
 
       footer p {
          margin: 0;
-         text-align: center;
-         font-size: 14px;
-         flex: 1;
+         font-size: 12px;
       }
 
       .social-media {
          display: flex;
-         justify-content: flex-end;
+         justify-content: center;
          align-items: center;
+         position: absolute;
+         right: 55px;
       }
 
       .social-media a {
@@ -315,21 +305,25 @@
          height: 25px;
       }
 
-      /* Specific adjustments for mobile view */
       @media screen and (max-width: 768px) {
+         .footer-content {
+            flex-direction: column;
+         }
+
+         .footer-content p {
+            position: static;
+            transform: none;
+            margin-bottom: 5px;
+         }
+
          .social-media {
-            display: flex;
+            position: static;
             justify-content: center;
-            /* Center the social media icons */
-            align-items: center;
             margin-top: 5px;
-            width: 100%;
-            /* Ensure it takes the full width */
          }
 
          .social-media a {
             margin: 0 10px;
-            /* Adjust margin between icons as needed */
          }
 
          .social-media img {
@@ -338,42 +332,10 @@
          }
       }
 
-      @media screen and (max-width: 1024px) {
-         header {
-            height: 50vh;
-         }
-
-         header img {
-            object-fit: fill;
-         }
-      }
-
-      @media screen and (max-width: 768px) {
-         header {
-            height: 50vh;
-         }
-
-         header img {
-            object-fit: fill;
-         }
-      }
-
-      @media screen and (orientation: landscape) and (max-width: 1024px) {
-         header {
-            height: 100vh;
-         }
-
-         header img {
-            object-fit: fill;
-         }
-      }
-
       @media screen and (min-width: 769px) and (max-width: 1023px) {
          footer {
             padding: 10px 20px;
-            /* Adjust padding for tablet */
             min-height: 40px;
-            /* Adjust minimum height for tablet */
          }
       }
    </style>
@@ -406,8 +368,6 @@
          <img src="46.jpg" alt="Album 3 Thumbnail">
          <h3 class="album-title">Album 3</h3>
       </div>
-
-
    </section>
    <div id="myModal" class="modal">
       <span class="close" onclick="closeModal()">&times;</span>
@@ -422,7 +382,7 @@
       </div>
    </div>
    <footer>
-      <p style="font-size: 12px;">&copy; 2022 Republic Club Pattaya. All rights reserved.</p>
+      <p>&copy; 2022 Republic Club Pattaya. All rights reserved.</p>
       <div class="social-media">
          <a href="https://www.facebook.com/RepublicPattaya/" target="_blank">
             <img src="facebook1.png" alt="Facebook">

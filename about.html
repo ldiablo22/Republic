@@ -61,7 +61,6 @@
       .menu-toggle {
          display: block;
          font-size: 24px;
-         /* Default size */
          cursor: pointer;
          color: white;
          position: absolute;
@@ -69,16 +68,12 @@
          top: 10px;
       }
 
-
       /* Adjust the size of the menu toggle button for larger screens in vertical view */
       @media screen and (min-width: 1024px) and (orientation: portrait) {
          .menu-toggle {
             font-size: 48px;
-            /* Increase the size for larger screens */
             right: 30px;
-            /* Adjust the position if necessary */
             top: 15px;
-            /* Adjust the position if necessary */
          }
       }
 
@@ -86,11 +81,8 @@
       @media screen and (max-width: 1024px) and (orientation: portrait) {
          .menu-toggle {
             font-size: 36px;
-            /* Increase the size for mobile vertical */
             right: 20px;
-            /* Adjust the position if necessary */
             top: 10px;
-            /* Adjust the position if necessary */
          }
       }
 
@@ -98,14 +90,10 @@
       @media screen and (max-width: 768px) and (orientation: landscape) {
          .menu-toggle {
             font-size: 36px;
-            /* Increase size for mobile landscape */
             right: 20px;
-            /* Adjust position if necessary */
             top: 10px;
-            /* Adjust position if necessary */
          }
       }
-
 
       header {
          position: relative;
@@ -120,6 +108,19 @@
          width: 100%;
          height: 100%;
          object-fit: fill;
+      }
+
+      .mute-button {
+         position: absolute;
+         top: 90%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         background-color: rgba(250, 7, 7, 0.5);
+         border: none;
+         color: white;
+         font-size: 12px;
+         padding: 10px 20px;
+         cursor: pointer;
       }
 
       section {
@@ -152,6 +153,24 @@
          text-align: center;
       }
 
+      .review {
+         max-width: 800px;
+         margin: 20px auto;
+         padding: 10px 20px;
+         background-color: rgba(0, 0, 0, 0.8);
+         border-radius: 8px;
+         text-align: center;
+      }
+
+      .review h3 {
+         margin: 0 0 10px;
+         font-size: 18px;
+      }
+
+      .review p {
+         margin: 0;
+         font-size: 14px;
+      }
 
       footer {
          background-color: black;
@@ -219,8 +238,6 @@
          }
       }
 
-
-
       @media screen and (max-width: 768px) {
          .social-media img {
             width: 20px;
@@ -261,9 +278,7 @@
       @media screen and (min-width: 769px) and (max-width: 1023px) {
          footer {
             padding: 10px 20px;
-            /* Adjust padding for tablet */
             min-height: 40px;
-            /* Adjust minimum height for tablet */
          }
       }
    </style>
@@ -271,10 +286,11 @@
 
 <body>
    <header>
-      <video autoplay loop>
-         <source src="video.mp4" type="video/mp4">
+      <video id="video" autoplay loop muted>
+         <source src="video3.mp4" type="video/mp4">
          Your browser does not support the video tag.
       </video>
+      <button id="mute-button" class="mute-button">Unmute</button>
    </header>
    <nav>
       <span class="menu-toggle">&#9776;</span>
@@ -293,15 +309,44 @@
          Located in the heart of Pattaya, our club is designed to provide an unforgettable experience for all who
          walk through our doors.</p>
       <p>At Republic Club, we pride ourselves on our top-notch service, sophisticated ambiance, and vibrant
-         atmosphere.
-         Our state-of-the-art sound system, dynamic lighting, and chic décor set the stage for an unparalleled
-         nightlife adventure. Whether you're looking to dance the night away to the latest beats from world-class DJs or
-         enjoy
-         a more intimate evening in one of our luxurious VIP sections, Republic Club has something for everyone.</p>
+         atmosphere. Our state-of-the-art sound system, dynamic lighting, and chic décor set the stage for an
+         unparalleled nightlife adventure. Whether you're looking to dance the night away to the latest beats from
+         world-class DJs or
+         enjoy a more intimate evening in one of our luxurious VIP sections, Republic Club has something for everyone.
+      </p>
       <p>Join us for an unforgettable night out. Whether you're celebrating a special occasion
          or just looking to enjoy the best nightlife that Pattaya has to offer, we're here to make your experience
-         exceptional.
-         Come and see why Republic Club is the ultimate destination for nightlife enthusiasts in Pattaya.</p>
+         exceptional. Come and see why Republic Club is the ultimate destination for nightlife enthusiasts in Pattaya.
+      </p>
+      <div class="review">
+         <h3>Chris</h3>
+         <p>"I always have an amazing time at Republic Club Pattaya! The music is fantastic, and the DJs know exactly
+            how to
+            keep the energy up all night long. The staff are super friendly and attentive, ensuring we always have
+            drinks in hand. The atmosphere is electric, and the lighting and decor really add to the vibe. Definitely
+            a must-visit if you're in Pattaya!"</p>
+      </div>
+      <div class="review">
+         <h3>James</h3>
+         <p>"Republic Club Pattaya exceeded my expectations. The venue is stunning with its modern design and impressive
+            sound system. The crowd was lively, and the events they host are top-notch. I particularly enjoyed the VIP
+            experience – the service was impeccable, and it made our night even more special. Highly recommended for
+            anyone looking for a great night out."</p>
+      </div>
+      <div class="review">
+         <h3>Fern</h3>
+         <p>"This club is the perfect spot for a fun night out with friends. The dance floor is spacious, and the music
+            selection caters to all tastes. The bartenders are skilled and make some of the best cocktails I’ve ever
+            had. I loved the themed nights and the live performances. Republic Club Pattaya definitely knows how to
+            throw a party!"</p>
+      </div>
+      <div class="review">
+         <h3>Amir</h3>
+         <p>"Republic Club Pattaya is my go-to place whenever I'm in town. The atmosphere is unbeatable, and the energy
+            is infectious. The security staff does a great job making sure everyone has a safe and enjoyable experience.
+            I appreciate the variety of music and the quality of the sound system. If you love to dance and have a great
+            time, this is the place to be."</p>
+      </div>
    </section>
    <section id="gallery">
       <h2>Gallery</h2>
@@ -345,6 +390,19 @@
 
       document.querySelector('.menu-toggle').addEventListener('click', function () {
          document.querySelector('nav ul').classList.toggle('show');
+      });
+
+      const video = document.getElementById('video');
+      const muteButton = document.getElementById('mute-button');
+
+      muteButton.addEventListener('click', function () {
+         if (video.muted) {
+            video.muted = false;
+            muteButton.textContent = 'Mute';
+         } else {
+            video.muted = true;
+            muteButton.textContent = 'Unmute';
+         }
       });
    </script>
 </body>
