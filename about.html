@@ -6,6 +6,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Nightclub</title>
    <link rel="stylesheet" href="css/styles.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
    <style>
       body,
       html {
@@ -130,23 +131,25 @@
 
       #home,
       #about,
-      #gallery,
-      #reservations,
-      #contact {
+      #virtual-tour,
+      #live-schedule,
+      #exclusive-offers {
          background-color: #c41d1d;
       }
 
       #about h2,
-      #gallery h2,
-      #reservations h2,
-      #contact h2 {
+      #virtual-tour h2,
+      #live-schedule h2,
+      #exclusive-offers h2 {
          margin-bottom: 20px;
+         text-align: center;
+         /* Center the H2 elements */
       }
 
       #about p,
-      #gallery p,
-      #reservations p,
-      #contact p {
+      #virtual-tour p,
+      #live-schedule p,
+      #exclusive-offers p {
          max-width: 800px;
          margin: 0 auto 20px;
          padding: 0 20px;
@@ -170,6 +173,52 @@
       .review p {
          margin: 0;
          font-size: 14px;
+      }
+
+      .stars {
+         color: gold;
+         font-size: 18px;
+         margin-left: 10px;
+      }
+
+      .schedule-container {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+      }
+
+      .schedule-entry {
+         background-color: rgba(0, 0, 0, 0.8);
+         padding: 20px;
+         margin: 10px;
+         border-radius: 8px;
+         text-align: center;
+         max-width: 800px;
+         width: 100%;
+      }
+
+      .offers-container {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+      }
+
+      .offer {
+         background-color: rgba(0, 0, 0, 0.8);
+         padding: 20px;
+         margin: 10px;
+         border-radius: 8px;
+         text-align: center;
+         max-width: 800px;
+         width: 100%;
+      }
+
+      .virtual-tour-container iframe {
+         width: 80%;
+         height: 500px;
+         max-width: 800px;
+         margin: 0 auto;
+         display: block;
       }
 
       footer {
@@ -206,7 +255,7 @@
          justify-content: flex-end;
          align-items: center;
          position: absolute;
-         right: 20px;
+         right: 40px;
       }
 
       .social-media a {
@@ -311,58 +360,105 @@
       <p>At Republic Club, we pride ourselves on our top-notch service, sophisticated ambiance, and vibrant
          atmosphere. Our state-of-the-art sound system, dynamic lighting, and chic décor set the stage for an
          unparalleled nightlife adventure. Whether you're looking to dance the night away to the latest beats from
-         world-class DJs or
-         enjoy a more intimate evening in one of our luxurious VIP sections, Republic Club has something for everyone.
-      </p>
-      <p>Join us for an unforgettable night out. Whether you're celebrating a special occasion
-         or just looking to enjoy the best nightlife that Pattaya has to offer, we're here to make your experience
-         exceptional. Come and see why Republic Club is the ultimate destination for nightlife enthusiasts in Pattaya.
-      </p>
+         world-class DJs or enjoy a more intimate evening in one of our luxurious VIP sections, Republic Club has
+         something for everyone.</p>
+      <p>Join us for an unforgettable night out. Whether you're celebrating a special occasion or just looking to
+         enjoy the best nightlife that Pattaya has to offer, we're here to make your experience exceptional. Come and
+         see why Republic Club is the ultimate destination for nightlife enthusiasts in Pattaya.</p>
       <div class="review">
-         <h3>Chris</h3>
+         <h3>Chris <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                  class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></h3>
          <p>"I always have an amazing time at Republic Club Pattaya! The music is fantastic, and the DJs know exactly
-            how to
-            keep the energy up all night long. The staff are super friendly and attentive, ensuring we always have
-            drinks in hand. The atmosphere is electric, and the lighting and decor really add to the vibe. Definitely
-            a must-visit if you're in Pattaya!"</p>
+            how to keep the energy up all night long. The staff are super friendly and attentive, ensuring we always
+            have drinks in hand. The atmosphere is electric, and the lighting and decor really add to the vibe.
+            Definitely a must-visit if you're in Pattaya!"</p>
       </div>
       <div class="review">
-         <h3>James</h3>
-         <p>"Republic Club Pattaya exceeded my expectations. The venue is stunning with its modern design and impressive
-            sound system. The crowd was lively, and the events they host are top-notch. I particularly enjoyed the VIP
-            experience – the service was impeccable, and it made our night even more special. Highly recommended for
-            anyone looking for a great night out."</p>
+         <h3>James <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                  class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></h3>
+         <p>"Republic Club Pattaya exceeded my expectations. The venue is stunning with its modern design and
+            impressive sound system. The crowd was lively, and the events they host are top-notch. I particularly
+            enjoyed the VIP experience – the service was impeccable, and it made our night even more special. Highly
+            recommended for anyone looking for a great night out."</p>
       </div>
       <div class="review">
-         <h3>Fern</h3>
-         <p>"This club is the perfect spot for a fun night out with friends. The dance floor is spacious, and the music
-            selection caters to all tastes. The bartenders are skilled and make some of the best cocktails I’ve ever
-            had. I loved the themed nights and the live performances. Republic Club Pattaya definitely knows how to
-            throw a party!"</p>
+         <h3>Fern <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                  class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></h3>
+         <p>"This club is the perfect spot for a fun night out with friends. The dance floor is spacious, and the
+            music selection caters to all tastes. The bartenders are skilled and make some of the best cocktails
+            I’ve ever had. I loved the themed nights and the live performances. Republic Club Pattaya definitely
+            knows how to throw a party!"</p>
       </div>
       <div class="review">
-         <h3>Amir</h3>
-         <p>"Republic Club Pattaya is my go-to place whenever I'm in town. The atmosphere is unbeatable, and the energy
-            is infectious. The security staff does a great job making sure everyone has a safe and enjoyable experience.
-            I appreciate the variety of music and the quality of the sound system. If you love to dance and have a great
-            time, this is the place to be."</p>
+         <h3>Amir <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                  class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></h3>
+         <p>"Republic Club Pattaya is my go-to place whenever I'm in town. The atmosphere is unbeatable, and the
+            energy is infectious. The security staff does a great job making sure everyone has a safe and enjoyable
+            experience. I appreciate the variety of music and the quality of the sound system. If you love to dance
+            and have a great time, this is the place to be."</p>
       </div>
    </section>
-   <section id="gallery">
-      <h2>Gallery</h2>
-      <p>Check out some photos from our recent events and see what makes our nightclub so special.</p>
+   <section id="virtual-tour">
+      <h2>Check Us Out On YouTube</h2>
+      <div class="virtual-tour-container">
+         <iframe src="https://www.youtube.com/embed/Hxlzf2EE9UE" frameborder=" 0" allow="accelerometer; autoplay; encrypted-media;
+          gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
    </section>
-   <section id="reservations">
-      <h2>Reservations</h2>
-      <p>Book your table now and ensure you have the best seat in the house for your night out.</p>
+   <section id="live-schedule">
+      <h2>Live DJ/Performance Schedule</h2>
+      <div class="schedule-container">
+         <!-- Example DJ schedule entry -->
+         <div class="schedule-entry">
+            <h3>DJ Name</h3>
+            <p>Date: July 20, 2024</p>
+            <p>Time: 10:30 PM - 11:30 AM</p>
+            <p>Bio: Short bio about the DJ.</p>
+            <a href="DJ_SOCIAL_MEDIA_LINK">Follow on Social Media</a>
+         </div>
+         <div class="schedule-entry">
+            <h3>DJ Name</h3>
+            <p>Date: July 20, 2024</p>
+            <p>Time: 11:30 PM - 12:30 AM</p>
+            <p>Bio: Short bio about the DJ.</p>
+            <a href="DJ_SOCIAL_MEDIA_LINK">Follow on Social Media</a>
+         </div>
+         <div class="schedule-entry">
+            <h3>DJ Name</h3>
+            <p>Date: July 20, 2024</p>
+            <p>Time: 12:30 Am - 1:30 AM</p>
+            <p>Bio: Short bio about the DJ.</p>
+            <a href="DJ_SOCIAL_MEDIA_LINK">Follow on Social Media</a>
+         </div>
+         <div class="schedule-entry">
+            <h3>DJ Name</h3>
+            <p>Date: July 20, 2024</p>
+            <p>Time: 1:30 AM - 2:30 AM</p>
+            <p>Bio: Short bio about the DJ.</p>
+            <a href="DJ_SOCIAL_MEDIA_LINK">Follow on Social Media</a>
+         </div>
+
+
+         <!-- Add more entries as needed -->
+      </div>
    </section>
-   <section id="contact">
-      <h2>Contact Us</h2>
-      <p>Get in touch with us for any inquiries or to learn more about our upcoming events.</p>
+   <section id="exclusive-offers">
+      <h2>Exclusive Offers and Promotions</h2>
+      <div class="offers-container">
+         <div class="offer">
+            <h3>Offer Title</h3>
+            <p>Description of the offer. Include details and terms.</p>
+
+         </div>
+         <!-- Add more offers as needed -->
+      </div>
    </section>
    <footer>
       <p style="font-size: 12px;">&copy; 2022 Republic Club Pattaya. All rights reserved.</p>
       <div class="social-media">
+         <a href="https://www.youtube.com/@republicpattaya" target="_blank">
+            <img src="youtube.png" alt="YouTube">
+         </a>
          <a href="https://www.facebook.com/RepublicPattaya/" target="_blank">
             <img src="facebook1.png" alt="Facebook">
          </a>

@@ -145,9 +145,13 @@
          max-height: 100%;
          object-fit: contain;
          margin: 0 1%;
+         transition: filter 0.3s ease;
       }
 
-      /* Adjust image sizes for mobile portrait mode */
+      .swiper-slide img:hover {
+         filter: none;
+      }
+
       @media screen and (max-width: 768px) {
          .swiper-slide {
             flex-direction: column;
@@ -278,7 +282,7 @@
          justify-content: flex-end;
          align-items: center;
          position: absolute;
-         right: 20px;
+         right: -20px;
       }
 
       .social-media a {
@@ -335,7 +339,6 @@
          font-size: 14px;
          /* Change font size for the fourth p element */
       }
-
 
       @media screen and (max-width: 768px) {
          .social-media img {
@@ -478,6 +481,9 @@
       <div class="footer-content">
          <p>&copy; 2022 Republic Club Pattaya. All rights reserved.</p>
          <div class="social-media">
+            <a href="https://www.youtube.com/@republicpattaya" target="_blank">
+               <img src="youtube.png" alt="YouTube">
+            </a>
             <a href="https://www.facebook.com/RepublicPattaya/" target="_blank">
                <img src="facebook1.png" alt="Facebook">
             </a>
