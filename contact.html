@@ -279,13 +279,29 @@
          width: 100%;
       }
 
+      /* Default footer height for desktop */
+      footer {
+         height: 100px;
+      }
+
+      /* Footer height for devices with width of 1024px */
+      @media only screen and (max-width: 1024px) and (min-width: 769px) {
+         footer {
+            height: 70px;
+         }
+      }
+
       .social-media {
          position: absolute;
          bottom: 10px;
          width: 100%;
          display: flex;
          justify-content: center;
-         /* Keep centered on mobile */
+         /* Center by default */
+         margin-right: 0;
+         /* Add this line to reset margin */
+         margin-left: 0;
+         /* Add this line to reset margin */
       }
 
       /* Styles for social media on larger screens (desktop) */
@@ -294,8 +310,19 @@
             right: 20px;
             bottom: 10px;
             width: auto;
-            justify-content: flex-start;
-            /* Move slightly to the left on desktop */
+            justify-content: flex-end;
+            /* Move to the right on desktop */
+         }
+      }
+
+      @media screen and (max-width: 1024px) and (orientation: landscape) {
+         .social-media {
+            justify-content: flex-end;
+            /* Move to the right in mobile landscape */
+            right: 50px;
+            /* Optional: adjust distance from the right */
+            margin-left: auto;
+            /* Ensure it's moved to the right */
          }
       }
 
@@ -378,8 +405,6 @@
       <section class="section">
          <!-- Your main section content here -->
       </section>
-
-      <div class="separator"></div>
 
       <div class="contact-section">
          <div class="map-container">
